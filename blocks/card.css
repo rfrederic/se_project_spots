@@ -5,6 +5,13 @@
   display: block;
 }
 
+.card__title {
+  font-weight: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .card__like-btn {
   background-image: url(../images/Like\ Icon.png);
   width: 23px;
