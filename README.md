@@ -56,8 +56,6 @@ Check out the deployed project on **GitHub Pages**:
 ### **Run Locally**
 
 If you want to run the project locally:
+Click in the below
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/rfrederic/se_project_spots.git
-   ```
+https://youtu.be/Zz0fwHh-5wM?si=U-IjzddpIk4x5Cw2
