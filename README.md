@@ -51,7 +51,7 @@ These technologies were chosen to create a visually appealing and functional UI 
 ## Deployment
 
 Check out the deployed project on **GitHub Pages**:  
-[Spots Deployment](https://github.com/rfrederic/se_project_spots)
+[Spots Deployment](https://rfrederic.github.io/se_project_spots/)
 
 ### **Run Locally**
 
