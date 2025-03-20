@@ -8,6 +8,7 @@
   margin-right: 20px;
   height: 190px;
   width: 190px;
+  border-radius: 20px;
 }
 
 .profile__column {
@@ -15,21 +16,31 @@
   flex-direction: column;
 }
 
+.profile__edit-button:hover {
+  background-color: #212121;
+}
+
 .profile__edit-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin-right: auto;
   margin-top: auto;
-  border-radius: 90px;
-  gap: 8px;
+  color: #212121;
   opacity: 70%;
-  font-family: "Poppins";
+  font-family: "Poppins", Arial, sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 100%;
   letter-spacing: 0%;
   border: none;
   cursor: pointer;
+  background-color: transparent;
 }
-
+.profile__add-icon {
+  width: 12px;
+  height: 12px;
+}
 .profile__add-button {
   font-family: "Poppins", Arial, sans-serif;
   background-color: #212121;
@@ -37,7 +48,6 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 100%;
-  letter-spacing: 0%;
   border-radius: 8px;
   padding: 18px 32px;
   gap: 8px;
@@ -46,18 +56,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 16px;
   cursor: pointer;
+  height: 52px;
 }
-.profile__add-icon {
-  width: 12px;
-  height: 12px;
-  border: 2px;
-  color: #fcf5e5;
+.profile__add-button:hover {
+  background-color: #212121;
 }
 
 .profile__name {
   margin: 0 0 12px;
+  font-size: 32px;
+  line-height: 100%;
+  color: #212121;
   font-weight: 500;
   display: -webkit-box;
   overflow: hidden;
@@ -69,8 +79,9 @@
 
 .profile__description {
   font-family: "Poppins", Arial, sans-serif;
+  font-size: 16px;
   color: #212121;
-  line-height: 70%;
+  line-height: 100%;
   opacity: 70%;
   margin: 0;
   display: -webkit-box;
@@ -115,8 +126,5 @@
     margin-left: 0;
     max-width: 288px;
     width: 100%;
-    background-color: #212121;
-    color: #fcf5ef;
-    line-height: 100%;
   }
 }

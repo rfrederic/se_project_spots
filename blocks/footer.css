@@ -1,7 +1,8 @@
 .footer {
   margin: 0;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  border-top: 1px solid rgba(33, 33, 33, 0.4);
 }
 
 .footer__copyright {
@@ -11,10 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px rgba(33, 33, 33, 0.4) solid;
-  top: 310px;
-  left: 80px;
-  background-color: #fcf5e5;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  margin: 0;
+  color: #212121;
+  opacity: 70%;
 }
