@@ -60,7 +60,7 @@
   border: none;
 }
 .profile__add-button:hover {
-  opacity: 100%;
+  opacity: 80%;
 }
 
 .profile__name {
