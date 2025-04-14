@@ -122,10 +122,17 @@
       <footer class="footer page__section">
         <p class="footer__copyright">&copy;2025 Spots</p>
       </footer>
+
       <div class="modal" id="edit-profile-modal">
         <div class="modal__container">
-          <button class="modal__close-btn">X</button>
-          <h2 class="modal__title">Edith profile</h2>
+          <button type="button" class="modal__close-btn">
+            <img
+              class="modal__close-btn-icon"
+              src="./images/Close Icon.svg"
+              alt="close icon"
+            />
+          </button>
+          <h2 class="modal__title">Edit profile</h2>
           <form class="modal__form">
             <label for="profile-name-input" class="modal__label"
               >Name<input
@@ -150,7 +157,13 @@
       </div>
       <div class="modal" id="new-post-modal">
         <div class="modal__container">
-          <button class="modal__close-btn">X</button>
+          <button type="button" class="modal__close-btn">
+            <img
+              class="modal__close-btn-icon"
+              src="./images/Close Icon.svg"
+              alt="close icon"
+            />
+          </button>
           <h2 class="modal__title">New post</h2>
           <form class="modal__form">
             <label for="card-image-input" class="modal__label">
@@ -166,7 +179,7 @@
               Caption
               <input
                 id="card-image-input"
-                type="url"
+                type="text"
                 class="modal__input"
                 placeholder="Type your caption"
               />
