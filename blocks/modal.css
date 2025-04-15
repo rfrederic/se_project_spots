@@ -1,6 +1,6 @@
 .modal {
   visibility: hidden;
-  background-color: #00000000;
+  background-color: #00000080;
   position: fixed;
   top: 0;
   right: 0;
@@ -56,6 +56,11 @@
 }
 
 .modal__label {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 110.00000000000001%;
+  opacity: 70%;
+  color: #212121;
   width: 630px;
   height: 52px;
   font-family: "Poppins", Arial, sans-serif;
@@ -77,6 +82,11 @@
   border-radius: 8px;
   box-sizing: border-box;
   padding: 16px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 100%;
+  opacity: 100%;
+  color: #212121;
 }
 
 .modal__input::placeholder {
@@ -100,6 +110,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 100%;
+  border: none;
 }
 
 @media screen and (max-width: 627px) {
