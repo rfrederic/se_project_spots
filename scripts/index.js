@@ -24,6 +24,15 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
 ];
+
+function openModal(modal) {
+  modal.classList.add("modal_is-opened");
+}
+
+function closeModal(modal) {
+  modal.classList.remove("modal_is-opened");
+}
+
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
@@ -40,31 +49,41 @@ const profileDescriptionEl = document.querySelector(".profile__description");
 
 const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
-const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
+const newPostCloseBtn = newPostModal?.querySelector(".modal__close-btn");
+const newPostForm = newPostModal.querySelector(".modal__form");
+const postTitleInput = newPostForm.querySelector("#post-title-input");
+const postImageInput = newPostForm.querySelector("#post-image-input");
 
 editProfileBtn.addEventListener("click", function () {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
-  editProfileModal.classList.add("modal_is-opened");
+  openModal(editProfileModal);
+});
+
+newPostBtn.addEventListener("click", function () {
+  openModal(newPostModal);
 });
 
 editProfileCloseBtn.addEventListener("click", function () {
-  editProfileModal.classList.remove("modal_is-opened");
+  closeModal(editProfileModal);
 });
 
-newPostBtn?.addEventListener("click", function () {
-  newPostModal.classList.add("modal_is-opened");
+newPostCloseBtn.addEventListener("click", function () {
+  closeModal(newPostModal);
 });
 
-newPostCloseBtn?.addEventListener("click", function () {
-  newPostModal.classList.remove("modal_is-opened");
-});
-
-function handleEditProfileSubmit(evt) {
+editProfileForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
   profileNameEl.textContent = editProfileNameInput.value;
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
-  editProfileModal.classList.remove("modal_is-opened");
-}
+  closeModal(editProfileModal);
+});
 
-editProfileForm.addEventListener("submit", handleEditProfileSubmit);
+newPostForm.addEventListener("submit", function (evt) {
+  evt.preventDefault();
+
+  const newPostImageInput = document.querySelector("#card-image-input");
+  const newPostCaptionInput = document.querySelector("#card-caption-input");
+  newPostForm.reset();
+  closeModal(newPostModal);
+});
