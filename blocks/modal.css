@@ -21,8 +21,8 @@
 
 .modal__container {
   max-width: 730px;
-  width: 100%;
-  box-sizing: border-box;
+  width: 70%;
+
   border-radius: 8px;
   background-color: #fff;
   padding: 32px 50px;
@@ -43,7 +43,8 @@
   background-color: transparent;
 }
 .modal__close-btn:hover {
-  background-color: bisque;
+  background-color: #212121;
+  opacity: 40%;
 }
 
 .modal__title {
@@ -130,6 +131,9 @@
     max-width: 106px;
     height: 20px;
     font-size: 20px;
+    padding: 12px;
+    font-weight: 500;
+    white-space: nowrap;
   }
   .modal__input {
     width: 100%;
@@ -137,11 +141,6 @@
     border-radius: 8px;
     gap: 8px;
     padding: 16px;
-  }
-  .modal__title {
-    font-weight: 500;
-    font-size: 20px;
-    white-space: nowrap;
   }
 
   .modal__label {
