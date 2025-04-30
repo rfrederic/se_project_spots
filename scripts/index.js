@@ -79,15 +79,15 @@ editProfileForm.addEventListener("submit", function (evt) {
   closeModal(editProfileModal);
 });
 
+const newPostImageInput = document.querySelector("#card-image-input");
+const newPostCaptionInput = document.querySelector("#card-caption-input");
+
 newPostForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
-  const newPostImageInput = document.querySelector("#card-image-input");
-
   console.log(newPostImageInput.value);
-
-  const newPostCaptionInput = document.querySelector("#card-caption-input");
   console.log(newPostCaptionInput.value);
+
   newPostForm.reset();
   closeModal(newPostModal);
 });
