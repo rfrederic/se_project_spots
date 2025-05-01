@@ -125,25 +125,34 @@
 
 .modal__image-container {
   max-width: 80vw;
-  max-height: 80vw;
+  max-height: 80vh;
   width: 100%;
   object-fit: contain;
   display: block;
   border-radius: 8px;
+  position: relative;
 }
+
 .modal__caption {
   margin-top: 8px;
   text-align: center;
   color: white;
-  font-size: 16px;
+  font-size: 20px;
   background-color: rgba(0, 0, 0, 0.6);
   padding: 4px 8px;
   border-radius: 8px;
   display: inline-block;
+  font-family: "Poppins", Arial, sans-serif;
+  font-weight: 500;
+  line-height: 120%;
 }
 .modal__close-btn {
   top: 0;
   right: -52.5px;
+  background-image: url(../images/close-icon-.svg);
+}
+.modal__close-btn:hover {
+  background-image: url(../images/close-icon-hover.svg);
 }
 .modal_type_preview {
   padding: 0, 16px;

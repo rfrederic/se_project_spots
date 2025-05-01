@@ -132,8 +132,8 @@ newPostForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
   const inputValues = {
-    name: newPostImageInput.value,
-    link: newPostCaptionInput.value,
+    name: newPostCaptionInput.value,
+    link: newPostImageInput.value,
   };
 
   const cardElement = getCardElement(inputValues);
