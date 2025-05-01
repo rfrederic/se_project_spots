@@ -1,5 +1,9 @@
 const initialCards = [
   {
+    name: "Golden Gate Bridge",
+    link: " https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
+  {
     name: "Val Thorens",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
   },
@@ -54,6 +58,33 @@ const newPostForm = newPostModal.querySelector(".modal__form");
 const postTitleInput = newPostForm.querySelector("#post-title-input");
 const postImageInput = newPostForm.querySelector("#post-image-input");
 
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".card");
+const cardsList = document.querySelector(".cards__list");
+
+function getCardElement(data) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardTitleEl = cardElement.querySelector(".card__title");
+  const cardImageEl = cardElement.querySelector(".card__image");
+
+  cardImageEl.src = data.link;
+  cardImageEl.alt = data.name;
+  cardTitleEl.textContent = data.name;
+
+  const cardlikeBtnEl = cardElement.querySelector(".card__like-btn");
+  cardlikeBtnEl.addEventListener("click", () => {
+    cardlikeBtnEl.classList.toggle("card__like-btn_active");
+  });
+
+  const cardDeleteBtnEl = cardElement.querySelector(".card__delete-btn");
+  cardDeleteBtnEl.addEventListener("click", () => {
+    cardElement.remove("card__delete-btn");
+  });
+
+  return cardElement;
+}
+
 editProfileBtn.addEventListener("click", function () {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
@@ -85,9 +116,19 @@ const newPostCaptionInput = document.querySelector("#card-caption-input");
 newPostForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
-  console.log(newPostImageInput.value);
-  console.log(newPostCaptionInput.value);
+  const inputValues = {
+    name: newPostImageInput.value,
+    link: newPostCaptionInput.value,
+  };
+
+  const cardElement = getCardElement(inputValues);
+  cardsList.prepend(cardElement);
 
   newPostForm.reset();
   closeModal(newPostModal);
+});
+
+initialCards.forEach(function (item) {
+  const cardElement = getCardElement(item);
+  cardsList.append(cardElement);
 });
