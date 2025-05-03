@@ -1,34 +1,3 @@
-const initialCards = [
-  {
-    name: "Golden Gate Bridge",
-    link: " https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-  },
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
-  {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-];
-
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
 }
@@ -39,27 +8,20 @@ function closeModal(modal) {
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
-const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
-const editProfileForm = editProfileModal.querySelector(".modal__form");
-const editProfileNameInput = editProfileModal.querySelector(
-  "#profile-name-input"
-);
-const editProfileDescriptionInput = editProfileModal.querySelector(
-  "#profile-description-input"
-);
-
+const editProfileForm = document.forms.editProfileForm;
+const editProfileNameInput = editProfileForm.elements["profile-name-input"];
+const editProfileDescriptionInput =
+  editProfileForm.elements["profile-description-input"];
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 
 const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
-const newPostCloseBtn = newPostModal?.querySelector(".modal__close-btn");
-const newPostForm = newPostModal.querySelector(".modal__form");
+const newPostForm = document.forms.newPostForm;
 const postTitleInput = newPostForm.querySelector("#post-title-input");
 const postImageInput = newPostForm.querySelector("#post-image-input");
 
 const previewModal = document.querySelector("#preview-modal");
-const previewCloseBtn = previewModal.querySelector(".modal__close-btn");
 const previewImageEl = previewModal.querySelector(".modal__image");
 const previewCaptionEl = previewModal.querySelector(".modal__caption");
 
@@ -106,16 +68,12 @@ editProfileBtn.addEventListener("click", function () {
 newPostBtn.addEventListener("click", function () {
   openModal(newPostModal);
 });
-previewCloseBtn.addEventListener("click", function () {
-  closeModal(previewModal);
-});
 
-editProfileCloseBtn.addEventListener("click", function () {
-  closeModal(editProfileModal);
-});
+const closeButtons = document.querySelectorAll(".modal__close-btn");
 
-newPostCloseBtn.addEventListener("click", function () {
-  closeModal(newPostModal);
+closeButtons.forEach((button) => {
+  const modal = button.closest(".modal");
+  button.addEventListener("click", () => closeModal(modal));
 });
 
 editProfileForm.addEventListener("submit", function (evt) {
@@ -127,7 +85,6 @@ editProfileForm.addEventListener("submit", function (evt) {
 
 const newPostImageInput = document.querySelector("#card-image-input");
 const newPostCaptionInput = document.querySelector("#card-caption-input");
-
 newPostForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
@@ -143,7 +100,7 @@ newPostForm.addEventListener("submit", function (evt) {
   closeModal(newPostModal);
 });
 
-initialCards.forEach(function (item) {
+initialCards.forEach((item) => {
   const cardElement = getCardElement(item);
   cardsList.append(cardElement);
 });
