@@ -16,7 +16,7 @@
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
 }
-.card__image:hover {
+.card:hover {
   transform: scale(1.02);
   filter: brightness(0.95);
 }
@@ -41,28 +41,27 @@
 }
 
 .card__like-btn {
-  background-image: url(../images/likee.svg);
+  background: transparent url(../images/likee.svg) center no-repeat;
   border: none;
-  background-color: transparent;
   opacity: 40%;
   width: 24px;
   height: 24px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
   cursor: pointer;
-}
-.card__like-btn:hover {
-  opacity: 100%;
 }
 
 .card__like-btn_active {
-  background-image: url(../images/like-active-icon.svg);
+  background-image: url(../images/State=Liked.svg);
+  opacity: 100%;
+  background-image: transparent;
+}
+
+.card__like-btn:hover {
   opacity: 100%;
 }
 
 .card__like-btn_active:hover {
   opacity: 40%;
+  background-image: transparent;
 }
 
 .card__content {

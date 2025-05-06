@@ -126,6 +126,7 @@
 
   .profile__description {
     margin-bottom: 32px;
+    max-width: 288px;
   }
 
   .profile__add-btn {
