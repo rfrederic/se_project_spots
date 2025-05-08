@@ -47,21 +47,21 @@
   width: 24px;
   height: 24px;
   cursor: pointer;
+  flex: 0 0 24px;
 }
 
 .card__like-btn_active {
-  background-image: url(../images/State=Liked.svg);
-  opacity: 100%;
-  background-image: transparent;
+  background-image: url(../images/Union.svg);
+  opacity: 1;
+  flex: 0 0 24px;
 }
 
 .card__like-btn:hover {
-  opacity: 100%;
+  opacity: 1;
 }
 
 .card__like-btn_active:hover {
-  opacity: 40%;
-  background-image: transparent;
+  opacity: 0.4;
 }
 
 .card__content {
@@ -97,5 +97,6 @@
   .card__like-btn {
     width: 20px;
     height: 20px;
+    flex: 0 0 24px;
   }
 }
