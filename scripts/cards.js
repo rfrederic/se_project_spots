@@ -1,3 +1,5 @@
+// TO - DO pass settigs objectto validation functions that are called in this file
+
 const initialCards = [
   {
     name: "Golden Gate Bridge",

@@ -66,6 +66,7 @@ function getCardElement(data) {
 editProfileBtn.addEventListener("click", function () {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
+  resetValidation(editProfileForm);
   openModal(editProfileModal);
 });
 
@@ -95,9 +96,11 @@ newPostForm.addEventListener("submit", function (evt) {
 
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
+  disableButton(cardSubmitBtn, settings);
 
   newPostForm.reset();
   closeModal(newPostModal);
+  disableButton(cardSubmitBtn);
 });
 
 initialCards.forEach((item) => {
