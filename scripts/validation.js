@@ -7,75 +7,77 @@ const settings = {
   errorClass: "modal__error_visible",
 };
 
-const showInputError = (formEl, inputEl, errorMessage) => {
-  const errorMessageEl = document.querySelector(`#${inputEl.id}-error`);
-  inputEl.classList.add(settings.inputErrorClass);
+const showInputError = (formEl, inputEl, errorMessage, config) => {
+  const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
+  inputEl.classList.add(config.inputErrorClass);
   errorMessageEl.textContent = errorMessage;
-  errorMessageEl.classList.add(settings.errorClass);
+  errorMessageEl.classList.add(config.errorClass);
 };
 
-const hideInputError = (formEl, inputEl) => {
-  const errorMessageEl = document.querySelector(`#${inputEl.id}-error`);
-  inputEl.classList.remove(settings.inputErrorClass);
+const hideInputError = (formEl, inputEl, config) => {
+  const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
+  inputEl.classList.remove(config.inputErrorClass);
   errorMessageEl.textContent = "";
+  errorMessageEl.classList.remove(config.errorClass);
+};
+
+const disableButton = (buttonElement, config) => {
+  buttonElement.disabled = true;
+  buttonElement.classList.add(config.inactiveButtonClass);
+};
+
+const enableButton = (buttonElement, config) => {
+  buttonElement.disabled = false;
+  buttonElement.classList.remove(config.inactiveButtonClass);
 };
 
 const hasInvalidInput = (inputs) =>
   inputs.some((inputEl) => !inputEl.validity.valid);
 
-const toggleButtonState = (inputs, button) => {
+const toggleButtonState = (inputs, button, config) => {
   if (hasInvalidInput(inputs)) {
-    button.disabled = true;
-    button.classList.add(settings.inactiveButtonClass);
+    disableButton(button, config);
   } else {
-    button.disabled = false;
-    button.classList.remove(settings.inactiveButtonClass);
+    enableButton(button, config);
   }
 };
 
-const setEventListeners = (formEl) => {
-  const inputs = Array.from(formEl.querySelectorAll(settings.inputSelector));
-  const button = formEl.querySelector(settings.submitButtonSelector);
+const setEventListeners = (formEl, config) => {
+  const inputs = Array.from(formEl.querySelectorAll(config.inputSelector));
+  const button = formEl.querySelector(config.submitButtonSelector);
 
-  toggleButtonState(inputs, button);
+  toggleButtonState(inputs, button, config);
 
   inputs.forEach((inputEl) => {
     inputEl.addEventListener("input", () => {
       if (!inputEl.validity.valid) {
-        showInputError(formEl, inputEl, inputEl.validationMessage);
+        showInputError(formEl, inputEl, inputEl.validationMessage, config);
       } else {
-        hideInputError(formEl, inputEl);
+        hideInputError(formEl, inputEl, config);
       }
-      toggleButtonState(inputs, button);
+      toggleButtonState(inputs, button, config);
     });
   });
 };
 
-const enableValidation = (settings) => {
-  const forms = document.querySelectorAll(settings.formSelector);
+const enableValidation = (config) => {
+  const forms = document.querySelectorAll(config.formSelector);
   forms.forEach((formEl) => {
     formEl.addEventListener("submit", (e) => e.preventDefault());
-    setEventListeners(formEl);
+    setEventListeners(formEl, config);
   });
+};
+
+const resetValidation = (formEl, config) => {
+  const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
+  inputList.forEach((inputEl) => {
+    hideInputError(formEl, inputEl, config);
+  });
+
+  const button = formEl.querySelector(config.submitButtonSelector);
+  if (button) {
+    disableButton(button, config);
+  }
 };
 
 enableValidation(settings);
-
-function disableButton(buttonElement, config) {
-  buttonElement.disabled = true;
-  buttonElement.classList.add(config.inactiveButtonClass);
-}
-
-const resetValidation = (formEl, inputList, settings) => {
-  inputList.forEach((inputEl) => {
-    const errorEl = formEl.querySelector(`#${inputEl.id}-error`);
-    if (errorEl) errorEl.textContent = "";
-    inputEl.classList.remove(settings.inputErrorClass);
-  });
-
-  const button = formEl.querySelector(settings.submitButtonSelector);
-  if (button) {
-    button.disabled = true;
-    button.classList.add(settings.inactiveButtonClass);
-  }
-};
