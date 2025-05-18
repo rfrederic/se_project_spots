@@ -73,7 +73,7 @@ editProfileBtn.addEventListener("click", function () {
   const inputList = Array.from(
     editProfileForm.querySelectorAll(settings.inputSelector)
   );
-  resetValidation(editProfileForm, inputList, settings);
+  resetValidation(editProfileForm, settings);
 
   openModal(editProfileModal);
 });
