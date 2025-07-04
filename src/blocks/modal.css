@@ -191,7 +191,7 @@
 .modal__close-btn_type_preview {
   top: 0;
   right: -52.5px;
-  background-image: url(../images/close-icon.svg);
+  background-image: url(../images/close-btn.svg);
 }
 .modal_type_preview {
   padding: 0, 16px;
