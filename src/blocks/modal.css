@@ -36,7 +36,7 @@
   right: 40px;
   width: 40px;
   height: 40px;
-  background-image: url(../images/Close_Icon.svg);
+  background-image: url(../images/close-btn.svg);
   background-repeat: no-repeat;
   background-size: contain;
   border: none;
@@ -51,7 +51,7 @@
   background-image: url(../images/Property\ 1=Variant2.svg);
 }
 .modal__close-btn_type_preview {
-  background-image: url("../images/close-icon.svg");
+  background-image: url(../images/close-btn.svg);
 }
 .modal__title {
   font-family: "Poppins", Arial, sans-serif;
@@ -191,7 +191,7 @@
 .modal__close-btn_type_preview {
   top: 0;
   right: -52.5px;
-  background-image: url(../images/close-icon-.svg);
+  background-image: url(../images/close-icon.svg);
 }
 .modal_type_preview {
   padding: 0, 16px;

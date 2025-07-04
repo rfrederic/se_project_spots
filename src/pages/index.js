@@ -1,3 +1,27 @@
+import "./index.css";
+import logoSrc from "../images/logo.svg";
+import avatarSrc from "../images/avatar.jpg";
+import pencillSrc from "../images/pencill.svg";
+import plusSrc from "../images/plus.svg";
+
+import {
+  enableValidation,
+  resetValidation,
+  disableButton,
+  settings,
+} from "../scripts/validation.js";
+
+import { initialCards } from "../scripts/cards.js";
+
+const logoHeaderImg = document.getElementById("logoheader");
+logoHeaderImg.src = logoSrc;
+const profileAvatarImg = document.getElementById("profile-page-section");
+profileAvatarImg.src = avatarSrc;
+const pencilIconImg = document.getElementById("profile-pencil-icon");
+pencilIconImg.src = pencillSrc;
+const addIconImg = document.getElementById("profile-add-icon");
+addIconImg.src = plusSrc;
+
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileForm = document.forms.editProfileForm;
@@ -133,3 +157,5 @@ modals.forEach((modal) => {
     }
   });
 });
+
+enableValidation(settings);
