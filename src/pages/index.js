@@ -30,7 +30,7 @@ const api = new Api({
 });
 
 // -------- DOM Elements --------
-const profileAvatarImg = document.querySelector(".profile__image");
+const profileAvatarImg = document.querySelector(".profile__avatar");
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 
