@@ -65,7 +65,7 @@ const previewCaptionEl = previewModal.querySelector(".modal__caption");
 
 const cardTemplate = document
   .querySelector("#card-template")
-  ?.content.querySelector(".card");
+  .content.querySelector(".card");
 const cardsList = document.querySelector(".cards__list");
 
 const closeButtons = document.querySelectorAll(".modal__close-btn");
@@ -117,7 +117,8 @@ function getCardElement(data) {
   cardImageEl.alt = data.name;
 
   // Like State
-  const isLiked = data.likes.some((user) => user._id === api.userId);
+  const likes = Array.isArray(data.likes) ? data.likes : [];
+  const isLiked = likes.some((user) => user._id === api.userId);
   if (isLiked) likeBtn.classList.add("card__like-btn_active");
 
   likeBtn.addEventListener("click", () => {
@@ -254,15 +255,15 @@ avatarBtn.addEventListener("click", () => {
 api
   .getUserInfo()
   .then((userData) => {
+    api.userId = userData._id; // move this up FIRST
     profileNameEl.textContent = userData.name;
     profileDescriptionEl.textContent = userData.about;
     profileAvatarImg.src = userData.avatar;
-    api.userId = userData._id;
     return api.getInitialCards();
   })
   .then((cards) => {
     cards.forEach((cardData) => {
-      const card = getCardElement(cardData);
+      const card = getCardElement(cardData); // this was crashing before
       cardsList.append(card);
     });
   })
