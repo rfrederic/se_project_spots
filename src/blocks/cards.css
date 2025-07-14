@@ -1,10 +1,17 @@
 .cards {
   padding-top: 20px;
 }
+.card__like-btn_active {
+  background-image: url("../images/like-active-icon.svg");
+}
+
+.card__like-btn_active:hover {
+  background-image: url("../images/like-light-hover-icon.svg");
+}
 
 .cards__list {
   list-style-type: none;
-  padding: 0;
+  padding: 0;j
   margin: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, 413px);
