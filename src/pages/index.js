@@ -7,7 +7,6 @@ import {
   settings,
 } from "../scripts/validation.js";
 
-// -------- Render Loading --------
 function renderLoading(isLoading, button, loadingText = "Saving...") {
   if (!button) return;
   if (isLoading) {
@@ -20,7 +19,6 @@ function renderLoading(isLoading, button, loadingText = "Saving...") {
   }
 }
 
-// -------- Initialize API --------
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -29,7 +27,6 @@ const api = new Api({
   },
 });
 
-// -------- DOM Elements --------
 const profileAvatarImg = document.querySelector(".profile__avatar");
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
@@ -70,7 +67,6 @@ const cardsList = document.querySelector(".cards__list");
 
 const closeButtons = document.querySelectorAll(".modal__close-btn");
 
-// -------- Modal Controls --------
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
   document.addEventListener("keydown", handleEscClose);
@@ -100,11 +96,9 @@ modals.forEach((modal) => {
   });
 });
 
-// -------- Global Delete State --------
 let selectedCard = null;
 let selectedCardId = null;
 
-// -------- Get Card Element --------
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardTitleEl = cardElement.querySelector(".card__title");
@@ -116,7 +110,6 @@ function getCardElement(data) {
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
 
-  // Like State
   const likes = Array.isArray(data.likes) ? data.likes : [];
   const isLiked = likes.some((user) => user._id === api.userId);
   if (isLiked) likeBtn.classList.add("card__like-btn_active");
@@ -124,17 +117,20 @@ function getCardElement(data) {
   likeBtn.addEventListener("click", () => {
     const hasLiked = likeBtn.classList.contains("card__like-btn_active");
     const request = hasLiked ? api.removeLike(data._id) : api.addLike(data._id);
+
     request
       .then((updatedCard) => {
-        likeBtn.classList.toggle(
-          "card__like-btn_active",
-          updatedCard.likes.some((u) => u._id === api.userId)
-        );
+        const newLikes = Array.isArray(updatedCard.likes)
+          ? updatedCard.likes
+          : [];
+        const likedNow = newLikes.some((u) => u._id === api.userId);
+        likeBtn.classList.toggle("card__like-btn_active", likedNow);
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Failed to toggle like:", err);
+      });
   });
 
-  // Show delete only if owner
   if (data.owner._id === api.userId) {
     deleteBtn.addEventListener("click", () => {
       selectedCard = cardElement;
@@ -145,7 +141,6 @@ function getCardElement(data) {
     deleteBtn.remove();
   }
 
-  // Image preview
   cardImageEl.addEventListener("click", () => {
     previewImageEl.src = data.link;
     previewImageEl.alt = data.name;
@@ -156,7 +151,6 @@ function getCardElement(data) {
   return cardElement;
 }
 
-// -------- Delete Submit --------
 deleteForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const deleteBtn = deleteForm.querySelector(".modal__submit-btn_type_delete");
@@ -180,7 +174,6 @@ cancelDeleteBtn.addEventListener("click", () => {
   selectedCardId = null;
 });
 
-// -------- Form Submits --------
 editProfileForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
   const saveBtn = editProfileForm.querySelector(".modal__submit-btn");
@@ -237,7 +230,6 @@ avatarForm.addEventListener("submit", function (evt) {
     .finally(() => renderLoading(false, submitBtn));
 });
 
-// -------- Modal Triggers --------
 editProfileBtn.addEventListener("click", function () {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
@@ -251,11 +243,10 @@ avatarBtn.addEventListener("click", () => {
   openModal(avatarModal);
 });
 
-// -------- Initial Data --------
 api
   .getUserInfo()
   .then((userData) => {
-    api.userId = userData._id; // move this up FIRST
+    api.userId = userData._id;
     profileNameEl.textContent = userData.name;
     profileDescriptionEl.textContent = userData.about;
     profileAvatarImg.src = userData.avatar;
@@ -263,11 +254,10 @@ api
   })
   .then((cards) => {
     cards.forEach((cardData) => {
-      const card = getCardElement(cardData); // this was crashing before
+      const card = getCardElement(cardData);
       cardsList.append(card);
     });
   })
   .catch(console.error);
 
-// -------- Enable Validation --------
 enableValidation(settings);
