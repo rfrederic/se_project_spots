@@ -130,16 +130,7 @@
     text-align: center;
     padding-top: 20px;
   }
-  .profile__pencil-icon {
-    position: absolute;
-    width: 288;
-    height: 2322;
-    top: 66px;
-    left: 16px;
-    gap: 20px;
-    angle: 0 deg;
-    opacity: 1;
-  }
+
   .profile__avatar-btn {
     position: absolute;
     width: 100%;

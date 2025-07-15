@@ -120,11 +120,11 @@ function getCardElement(data) {
 
     request
       .then((updatedCard) => {
-        const newLikes = Array.isArray(updatedCard.likes)
-          ? updatedCard.likes
-          : [];
-        const likedNow = newLikes.some((u) => u._id === api.userId);
-        likeBtn.classList.toggle("card__like-btn_active", likedNow);
+        // const newLikes = Array.isArray(updatedCard.likes)
+        //   ? updatedCard.likes
+        //   : [];
+        // const likedNow = newLikes.some((u) => u._id === api.userId);
+        likeBtn.classList.toggle("card__like-btn_active");
       })
       .catch((err) => {
         console.error("Failed to toggle like:", err);
