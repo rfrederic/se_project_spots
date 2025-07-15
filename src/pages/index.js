@@ -110,20 +110,14 @@ function getCardElement(data) {
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
 
-  const likes = Array.isArray(data.likes) ? data.likes : [];
-  const isLiked = likes.some((user) => user._id === api.userId);
-  if (isLiked) likeBtn.classList.add("card__like-btn_active");
+  if (data.isLiked) likeBtn.classList.add("card__like-btn_active");
 
   likeBtn.addEventListener("click", () => {
-    const hasLiked = likeBtn.classList.contains("card__like-btn_active");
+    const hasLiked = data.isLiked;
     const request = hasLiked ? api.removeLike(data._id) : api.addLike(data._id);
 
     request
       .then((updatedCard) => {
-        // const newLikes = Array.isArray(updatedCard.likes)
-        //   ? updatedCard.likes
-        //   : [];
-        // const likedNow = newLikes.some((u) => u._id === api.userId);
         likeBtn.classList.toggle("card__like-btn_active");
       })
       .catch((err) => {
@@ -131,15 +125,11 @@ function getCardElement(data) {
       });
   });
 
-  if (data.owner._id === api.userId) {
-    deleteBtn.addEventListener("click", () => {
-      selectedCard = cardElement;
-      selectedCardId = data._id;
-      openModal(deleteModal);
-    });
-  } else {
-    deleteBtn.remove();
-  }
+  deleteBtn.addEventListener("click", () => {
+    selectedCard = cardElement;
+    selectedCardId = data._id;
+    openModal(deleteModal);
+  });
 
   cardImageEl.addEventListener("click", () => {
     previewImageEl.src = data.link;
