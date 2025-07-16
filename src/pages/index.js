@@ -200,7 +200,9 @@ newPostForm.addEventListener("submit", function (evt) {
       closeModal(newPostModal);
       disableButton(submitBtn, settings);
     })
-    .catch(console.error)
+    .catch((error) => {
+      console.error("Failed to create a new card:", error);
+    })
     .finally(() => renderLoading(false, submitBtn));
 });
 
@@ -215,6 +217,7 @@ avatarForm.addEventListener("submit", function (evt) {
       profileAvatarImg.src = userData.avatar;
       avatarForm.reset();
       closeModal(avatarModal);
+      resetValidation(avatarForm, settings);
     })
     .catch(console.error)
     .finally(() => renderLoading(false, submitBtn));
@@ -234,15 +237,13 @@ avatarBtn.addEventListener("click", () => {
 });
 
 api
-  .getUserInfo()
-  .then((userData) => {
+  .getAppInfo()
+  .then(([userData, cards]) => {
     api.userId = userData._id;
     profileNameEl.textContent = userData.name;
     profileDescriptionEl.textContent = userData.about;
     profileAvatarImg.src = userData.avatar;
-    return api.getInitialCards();
-  })
-  .then((cards) => {
+
     cards.forEach((cardData) => {
       const card = getCardElement(cardData);
       cardsList.append(card);

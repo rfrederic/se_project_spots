@@ -3,6 +3,9 @@ class Api {
     this._baseUrl = baseUrl;
     this._headers = headers;
   }
+  getAppInfo() {
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]);
+  }
 
   _handleResponse(res) {
     if (!res.ok) {
