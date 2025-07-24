@@ -1,6 +1,5 @@
-// TO - DO pass settigs objectto validation functions that are called in this file
-
-const initialCards = [
+/*
+export const initialCards = [
   {
     name: "Golden Gate Bridge",
     link: " https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
@@ -38,3 +37,4 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
 ];
+*/
